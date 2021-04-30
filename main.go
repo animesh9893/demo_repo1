@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"github.com/gorilla/mux"
 	"encoding/json"
+	"os"
 )
 
 type Post struct {
@@ -38,9 +39,10 @@ func HomePostHandler(w http.ResponseWriter, r *http.Request){
 }
 
 func main(){
+	port := os.Getenv("PORT")
 	r:= mux.NewRouter()
 	r.HandleFunc("/",HomeHandler)
 	r.HandleFunc("/home",HomeGetHandler).Methods("GET")
 	r.HandleFunc("/home",HomePostHandler).Methods("POST")
-	http.ListenAndServe(":8000",r)
+	http.ListenAndServe(":"+port,r)
 }
