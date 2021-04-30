@@ -1,1 +1,1 @@
-web: gv
+web: demo_repo1
